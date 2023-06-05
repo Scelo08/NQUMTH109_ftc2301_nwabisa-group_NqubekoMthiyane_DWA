@@ -43,6 +43,11 @@ if(divider < 0){
         console.error("Call stack:", error.stack);
       }
 
+/**
+ * Here we condition the code display a full screen error message
+ * and browser error if the inputs YOLO and +++ are used as dividend and
+ * divider respectively.
+  */      
  if (dividend === 'YOLO' && divider === '+++') {
         document.body.innerHTML = "Something critical went wrong. Please reload the page.";
         console.error("An error occurred: Something critical went wrong.");      
@@ -50,3 +55,4 @@ if(divider < 0){
 }
 });
  
+//I am aware that I could have used else IF statements for better structure but this is more understanderable.

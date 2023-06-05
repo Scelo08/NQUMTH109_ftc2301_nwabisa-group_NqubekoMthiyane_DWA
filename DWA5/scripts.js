@@ -42,6 +42,11 @@ if(divider < 0){
         console.error("An error occurred:", error);
         console.error("Call stack:", error.stack);
       }
+
+ if (dividend === 'YOLO' && divider === '+++') {
+        document.body.innerHTML = "Something critical went wrong. Please reload the page.";
+        console.error("An error occurred: Something critical went wrong.");      
+ }
 }
 });
  

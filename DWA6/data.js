@@ -1,6 +1,5 @@
 // Ensure that the data.js file exports all it's values. For example:
 
-
 export const BOOKS_PER_PAGE = 36;
 
 export const authors = {

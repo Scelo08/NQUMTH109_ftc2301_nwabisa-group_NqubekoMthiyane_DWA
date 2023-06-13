@@ -27,21 +27,45 @@ for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
     starting.appendChild(element)
 }
 
-document.querySelector('[data-list-items]').appendChild(starting)
+// document.querySelector('[data-list-items]').appendChild(starting)
 
-const genreHtml = document.createDocumentFragment()
-const firstGenreElement = document.createElement('option')
-firstGenreElement.value = 'any'
-firstGenreElement.innerText = 'All Genres'
-genreHtml.appendChild(firstGenreElement)
+// const genreHtml = document.createDocumentFragment()
+// const firstGenreElement = document.createElement('option')
+// firstGenreElement.value = 'any'
+// firstGenreElement.innerText = 'All Genres'
+// genreHtml.appendChild(firstGenreElement)
 
-for (const [id, name] of Object.entries(genres)) {
-    const element = document.createElement('option')
-    element.value = id
-    element.innerText = name
-    genreHtml.appendChild(element)
-}
+// for (const [id, name] of Object.entries(genres)) {
+//     const element = document.createElement('option')
+//     element.value = id
+//     element.innerText = name
+//     genreHtml.appendChild(element)
+// }
 
+function createGenreOptions(genres) {
+    const genreHtml = document.createDocumentFragment();
+    
+    const firstGenreElement = document.createElement('option');
+    firstGenreElement.value = 'any';
+    firstGenreElement.innerText = 'All Genres';
+    genreHtml.appendChild(firstGenreElement);
+    
+    for (const [id, name] of Object.entries(genres)) {
+      const element = document.createElement('option');
+      element.value = id;
+      element.innerText = name;
+      genreHtml.appendChild(element);
+    }
+    
+    return genreHtml;
+  }
+  
+  // Append genre options to the container
+  const genreOptions = createGenreOptions(genres);
+  document.querySelector('[data-search-genres]').appendChild(genreOptions);
+  
+ 
+  
 document.querySelector('[data-search-genres]').appendChild(genreHtml)
 
 const authorsHtml = document.createDocumentFragment()
@@ -64,8 +88,7 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
     document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
     document.documentElement.style.setProperty('--color-light', '10, 10, 20');
 } else {
-    document.querySelector('[data-settings-theme]').value = 'day'
-    document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
+     document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
     document.documentElement.style.setProperty('--color-light', '255, 255, 255');
 }
 

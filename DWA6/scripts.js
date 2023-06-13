@@ -101,11 +101,11 @@ function createAuthorOptions(authors) {
   
   // Append author options to the container
   const authorOptions = createAuthorOptions(authors);
-  document.querySelector('[data-search-genres]').appendChild(authorOptions);
+  document.querySelector('[data-search-authors]').appendChild(authorOptions);
   
   
 
-document.querySelector('[data-search-authors]').appendChild(authorsHtml)
+//document.querySelector('[data-search-authors]').appendChild(authorsHtml)
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.querySelector('[data-settings-theme]').value = 'night'

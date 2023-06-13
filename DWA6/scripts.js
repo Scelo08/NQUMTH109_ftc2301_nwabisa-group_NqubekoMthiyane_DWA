@@ -66,20 +66,44 @@ function createGenreOptions(genres) {
   
  
   
-document.querySelector('[data-search-genres]').appendChild(genreHtml)
+// document.querySelector('[data-search-genres]').appendChild(genreHtml)
 
-const authorsHtml = document.createDocumentFragment()
-const firstAuthorElement = document.createElement('option')
-firstAuthorElement.value = 'any'
-firstAuthorElement.innerText = 'All Authors'
-authorsHtml.appendChild(firstAuthorElement)
+// const authorsHtml = document.createDocumentFragment()
+// const firstAuthorElement = document.createElement('option')
+// firstAuthorElement.value = 'any'
+// firstAuthorElement.innerText = 'All Authors'
+// authorsHtml.appendChild(firstAuthorElement)
 
-for (const [id, name] of Object.entries(authors)) {
-    const element = document.createElement('option')
-    element.value = id
-    element.innerText = name
-    authorsHtml.appendChild(element)
-}
+// for (const [id, name] of Object.entries(authors)) {
+//     const element = document.createElement('option')
+//     element.value = id
+//     element.innerText = name
+//     authorsHtml.appendChild(element)
+// }
+
+function createAuthorOptions(authors) {
+    const authorsHtml = document.createDocumentFragment();
+    
+    const firstAuthorElement = document.createElement('option');
+    firstAuthorElement.value = 'any';
+    firstAuthorElement.innerText = 'All Authors';
+    authorsHtml.appendChild(firstAuthorElement);
+    
+    for (const [id, name] of Object.entries(authors)) {
+      const element = document.createElement('option');
+      element.value = id;
+      element.innerText = name;
+      authorsHtml.appendChild(element);
+    }
+    
+    return authorsHtml;
+  }
+  
+  // Append author options to the container
+  const authorOptions = createAuthorOptions(authors);
+  document.querySelector('[data-search-genres]').appendChild(authorOptions);
+  
+  
 
 document.querySelector('[data-search-authors]').appendChild(authorsHtml)
 

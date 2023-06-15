@@ -27,20 +27,20 @@ for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
     starting.appendChild(element)
 }
 
-// document.querySelector('[data-list-items]').appendChild(starting)
+document.querySelector('[data-list-items]').appendChild(starting)
 
-// const genreHtml = document.createDocumentFragment()
-// const firstGenreElement = document.createElement('option')
-// firstGenreElement.value = 'any'
-// firstGenreElement.innerText = 'All Genres'
-// genreHtml.appendChild(firstGenreElement)
+const genreHtml = document.createDocumentFragment()
+const firstGenreElement = document.createElement('option')
+firstGenreElement.value = 'any'
+firstGenreElement.innerText = 'All Genres'
+genreHtml.appendChild(firstGenreElement)
 
-// for (const [id, name] of Object.entries(genres)) {
-//     const element = document.createElement('option')
-//     element.value = id
-//     element.innerText = name
-//     genreHtml.appendChild(element)
-// }
+for (const [id, name] of Object.entries(genres)) {
+    const element = document.createElement('option')
+    element.value = id
+    element.innerText = name
+    genreHtml.appendChild(element)
+}
 
 function createGenreOptions(genres) {
     const genreHtml = document.createDocumentFragment();
@@ -66,20 +66,21 @@ function createGenreOptions(genres) {
   
  
   
-// document.querySelector('[data-search-genres]').appendChild(genreHtml)
+document.querySelector('[data-search-genres]').appendChild(genreHtml)
 
-// const authorsHtml = document.createDocumentFragment()
-// const firstAuthorElement = document.createElement('option')
-// firstAuthorElement.value = 'any'
-// firstAuthorElement.innerText = 'All Authors'
-// authorsHtml.appendChild(firstAuthorElement)
+const authorsHtml = document.createDocumentFragment()
+const firstAuthorElement = document.createElement('option')
+firstAuthorElement.value = 'any'
+firstAuthorElement.innerText = 'All Authors'
+authorsHtml.appendChild(firstAuthorElement)
 
-// for (const [id, name] of Object.entries(authors)) {
-//     const element = document.createElement('option')
-//     element.value = id
-//     element.innerText = name
-//     authorsHtml.appendChild(element)
-// }
+for (const [id, name] of Object.entries(authors)) {
+    const element = document.createElement('option')
+    element.value = id
+    element.innerText = name
+    authorsHtml.appendChild(element)
+}
+document.querySelector('[data-search-authors]').appendChild(authorsHtml)
 
 function createAuthorOptions(authors) {
     const authorsHtml = document.createDocumentFragment();
@@ -98,14 +99,18 @@ function createAuthorOptions(authors) {
     
     return authorsHtml;
   }
-  
-  // Append author options to the container
-  const authorOptions = createAuthorOptions(authors);
-  document.querySelector('[data-search-authors]').appendChild(authorOptions);
+  function appendToContainer(containerSelector, element) {
+    document.querySelector(containerSelector).appendChild(element);
+  }
+
+// Append author options to the container
+const authorOptions = createAuthorOptions(authors);
+appendToContainer('[data-search-authors]', authorOptions);
+
   
   
 
-//document.querySelector('[data-search-authors]').appendChild(authorsHtml)
+
 
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.querySelector('[data-settings-theme]').value = 'night'

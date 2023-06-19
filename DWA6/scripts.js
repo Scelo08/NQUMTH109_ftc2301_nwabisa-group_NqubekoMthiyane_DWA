@@ -192,7 +192,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     page = 1;
     matches = result
 
-    if (result.length < 1) {
+    if (result.length > 1) {
         document.querySelector('[data-list-message]').classList.add('list__message_show')
     } else {
         document.querySelector('[data-list-message]').classList.remove('list__message_show')

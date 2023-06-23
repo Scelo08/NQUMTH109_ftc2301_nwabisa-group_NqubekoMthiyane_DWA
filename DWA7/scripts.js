@@ -288,28 +288,71 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     document.querySelector('[data-list-items]').innerHTML = ''
     const newItems = document.createDocumentFragment()
 
-    for (const { author, id, image, title } of result.slice(0, BOOKS_PER_PAGE)) {
-        const element = document.createElement('button')
-        element.classList = 'preview'
-        element.setAttribute('data-preview', id)
+    // for (const { author, id, image, title } of result.slice(0, BOOKS_PER_PAGE)) {
+    //     const element = document.createElement('button')
+    //     element.classList = 'preview'
+    //     element.setAttribute('data-preview', id)
     
-        element.innerHTML = `
-            <img
-                class="preview__image"
-                src="${image}"
-            />
+    //     element.innerHTML = `
+    //         <img
+    //             class="preview__image"
+    //             src="${image}"
+    //         />
             
-            <div class="preview__info">
-                <h3 class="preview__title">${title}</h3>
-                <div class="preview__author">${authors[author]}</div>
-            </div>
-        `
+    //         <div class="preview__info">
+    //             <h3 class="preview__title">${title}</h3>
+    //             <div class="preview__author">${authors[author]}</div>
+    //         </div>
+    //     `
 
-        newItems.appendChild(element)
+    //     newItems.appendChild(element)
+    // }
+
+
+    // document.querySelector('[data-list-items]').appendChild(newItems)
+    // document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+
+    function createBookPreview(author, id, image, title, authors) {
+      const element = document.createElement('button');
+      element.classList = 'preview';
+      element.setAttribute('data-preview', id);
+    
+      element.innerHTML = `
+        <img class="preview__image" src="${image}" />
+        <div class="preview__info">
+          <h3 class="preview__title">${title}</h3>
+          <div class="preview__author">${authors[author]}</div>
+        </div>
+      `;
+    
+      return element;
     }
-
-    document.querySelector('[data-list-items]').appendChild(newItems)
-    document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+    
+    function appendBookPreviews(result, authors, booksPerPage) {
+      const newItems = document.createDocumentFragment();
+    
+      for (const { author, id, image, title } of result.slice(0, booksPerPage)) {
+        const element = createBookPreview(author, id, image, title, authors);
+        newItems.appendChild(element);
+      }
+    
+      document.querySelector('[data-list-items]').appendChild(newItems);
+    }
+    
+    function updateShowMoreButton(matches, page, booksPerPage) {
+      const remainingBooksCount = matches.length - (page * booksPerPage);
+      const button = document.querySelector('[data-list-button]');
+      button.disabled = remainingBooksCount < 1;
+    }
+    
+    // Create and append book preview elements to the container
+    appendBookPreviews(result, authors, BOOKS_PER_PAGE);
+    
+    // Update "Show more" button disabled state
+    updateShowMoreButton(matches, page, BOOKS_PER_PAGE);
+    
+    
+    
 
     document.querySelector('[data-list-button]').innerHTML = `
         <span>Show more</span>

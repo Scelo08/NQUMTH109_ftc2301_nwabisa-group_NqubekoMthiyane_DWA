@@ -5,27 +5,27 @@ import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
 let page = 1;
 let matches = books
 
-// const starting = document.createDocumentFragment()
+const starting = document.createDocumentFragment()
 
-// for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
-//     const element = document.createElement('button')
-//     element.classList = 'preview'
-//     element.setAttribute('data-preview', id)
+for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
+    const element = document.createElement('button')
+    element.classList = 'preview'
+    element.setAttribute('data-preview', id)
 
-//     element.innerHTML = `
-//         <img
-//             class="preview__image"
-//             src="${image}"
-//         />
+    element.innerHTML = `
+        <img
+            class="preview__image"
+            src="${image}"
+        />
         
-//         <div class="preview__info">
-//             <h3 class="preview__title">${title}</h3>
-//             <div class="preview__author">${authors[author]}</div>
-//         </div>
-//     `
+        <div class="preview__info">
+            <h3 class="preview__title">${title}</h3>
+            <div class="preview__author">${authors[author]}</div>
+        </div>
+    `
 
-//     starting.appendChild(element)
-// }
+    starting.appendChild(element)
+}
 
 ///////////////DWA9
 class BookPreview extends HTMLElement {
@@ -141,14 +141,14 @@ appendToContainer('[data-search-authors]', authorOptions);
 
 
 
-// if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-//     document.querySelector('[data-settings-theme]').value = 'night'
-//     document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
-//     document.documentElement.style.setProperty('--color-light', '10, 10, 20');
-// } else {
-//      document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
-//     document.documentElement.style.setProperty('--color-light', '255, 255, 255');
-// }
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.querySelector('[data-settings-theme]').value = 'night'
+    document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
+    document.documentElement.style.setProperty('--color-light', '10, 10, 20');
+} else {
+     document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
+    document.documentElement.style.setProperty('--color-light', '255, 255, 255');
+}
 
 
 
@@ -185,31 +185,31 @@ document.querySelector('[data-list-button]').innerHTML = `
     <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
 `
 
-// document.querySelector('[data-search-cancel]').addEventListener('click', () => {
-//     document.querySelector('[data-search-overlay]').open = false
-// })
+document.querySelector('[data-search-cancel]').addEventListener('click', () => {
+    document.querySelector('[data-search-overlay]').open = false
+})
 
-// document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
-//     document.querySelector('[data-settings-overlay]').open = false
-// })
+document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
+    document.querySelector('[data-settings-overlay]').open = false
+})
 
-// document.querySelector('[data-header-search]').addEventListener('click', () => {
-//     document.querySelector('[data-search-overlay]').open = true 
-//     document.querySelector('[data-search-title]').focus()
-// })
+document.querySelector('[data-header-search]').addEventListener('click', () => {
+    document.querySelector('[data-search-overlay]').open = true 
+    document.querySelector('[data-search-title]').focus()
+})
 
-// document.querySelector('[data-header-settings]').addEventListener('click', () => {
-//     document.querySelector('[data-settings-overlay]').open = true 
-// })
+document.querySelector('[data-header-settings]').addEventListener('click', () => {
+    document.querySelector('[data-settings-overlay]').open = true 
+})
 
-// document.querySelector('[data-list-close]').addEventListener('click', () => {
-//     document.querySelector('[data-list-active]').open = false
-// })
+document.querySelector('[data-list-close]').addEventListener('click', () => {
+    document.querySelector('[data-list-active]').open = false
+})
 
-// document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
-//     event.preventDefault()
-//     const formData = new FormData(event.target)
-//     const { theme } = Object.fromEntries(formData)
+document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    const { theme } = Object.fromEntries(formData)
 
 function updateShowMoreButtonText(matches, page, booksPerPage) {
     const remainingBooksCount = matches.length - (page * booksPerPage);
@@ -317,29 +317,29 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     document.querySelector('[data-list-items]').innerHTML = ''
     const newItems = document.createDocumentFragment()
 
-    // for (const { author, id, image, title } of result.slice(0, BOOKS_PER_PAGE)) {
-    //     const element = document.createElement('button')
-    //     element.classList = 'preview'
-    //     element.setAttribute('data-preview', id)
+    for (const { author, id, image, title } of result.slice(0, BOOKS_PER_PAGE)) {
+        const element = document.createElement('button')
+        element.classList = 'preview'
+        element.setAttribute('data-preview', id)
     
-    //     element.innerHTML = `
-    //         <img
-    //             class="preview__image"
-    //             src="${image}"
-    //         />
+        element.innerHTML = `
+            <img
+                class="preview__image"
+                src="${image}"
+            />
             
-    //         <div class="preview__info">
-    //             <h3 class="preview__title">${title}</h3>
-    //             <div class="preview__author">${authors[author]}</div>
-    //         </div>
-    //     `
+            <div class="preview__info">
+                <h3 class="preview__title">${title}</h3>
+                <div class="preview__author">${authors[author]}</div>
+            </div>
+        `
 
-    //     newItems.appendChild(element)
-    // }
+        newItems.appendChild(element)
+    }
 
 
-    // document.querySelector('[data-list-items]').appendChild(newItems)
-    // document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+    document.querySelector('[data-list-items]').appendChild(newItems)
+    document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
 
     function createBookPreview(author, id, image, title, authors) {
       const element = document.createElement('button');
@@ -392,32 +392,32 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     document.querySelector('[data-search-overlay]').open = false
 })
 
-// document.querySelector('[data-list-button]').addEventListener('click', () => {
-//     const fragment = document.createDocumentFragment()
+document.querySelector('[data-list-button]').addEventListener('click', () => {
+    const fragment = document.createDocumentFragment()
 
-//     for (const { author, id, image, title } of matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE)) {
-//         const element = document.createElement('button')
-//         element.classList = 'preview'
-//         element.setAttribute('data-preview', id)
+    for (const { author, id, image, title } of matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE)) {
+        const element = document.createElement('button')
+        element.classList = 'preview'
+        element.setAttribute('data-preview', id)
     
-//         element.innerHTML = `
-//             <img
-//                 class="preview__image"
-//                 src="${image}"
-//             />
+        element.innerHTML = `
+            <img
+                class="preview__image"
+                src="${image}"
+            />
             
-//             <div class="preview__info">
-//                 <h3 class="preview__title">${title}</h3>
-//                 <div class="preview__author">${authors[author]}</div>
-//             </div>
-//         `
+            <div class="preview__info">
+                <h3 class="preview__title">${title}</h3>
+                <div class="preview__author">${authors[author]}</div>
+            </div>
+        `
 
-//         fragment.appendChild(element)
-//     }
+        fragment.appendChild(element)
+    }
 
-//     document.querySelector('[data-list-items]').appendChild(fragment)
-//     page += 1
-// })
+    document.querySelector('[data-list-items]').appendChild(fragment)
+    page += 1
+})
 function createAndAppendBookPreviews(matches, authors, page, booksPerPage) {
   const fragment = document.createDocumentFragment();
 
